@@ -1,9 +1,6 @@
-from typing import Any
-
-
 class Distance:
-    def __init__(self, distance: int) -> None:
-        self.km = distance
+    def __init__(self, km: int | float) -> None:
+        self.km = km
 
     def __str__(self) -> str:
         return f"Distance: {self.km} kilometers."
@@ -11,52 +8,45 @@ class Distance:
     def __repr__(self) -> str:
         return f"Distance(km={self.km})"
 
-    def __add__(self, other: Any) -> "Distance":
+    def __add__(self, other: "Distance | int | float") -> "Distance":
         if type(other) is int or type(other) is float:
             return Distance(self.km + other)
-        else:
-            return Distance(self.km + other.km)
+        return Distance(self.km + other.km)
 
-    def __iadd__(self, other: Any) -> "Distance":
+    def __iadd__(self, other: "Distance | int | float") -> "Distance":
         if type(other) is int or type(other) is float:
             self.km = self.km + other
             return self
-        else:
-            self.km = self.km + other.km
-            return self
+        self.km = self.km + other.km
+        return self
 
-    def __mul__(self, other: Any) -> "Distance":
+    def __mul__(self, other: int | float) -> "Distance":
         return Distance(self.km * other)
 
-    def __truediv__(self, other: Any) -> "Distance":
+    def __truediv__(self, other: int | float) -> "Distance":
         return Distance(round(self.km / other, 2))
 
-    def __lt__(self, other: Any) -> bool:
+    def __lt__(self, other: int | float) -> bool:
         if type(other) is int or type(other) is float:
             return self.km < other
-        else:
-            return self.km < other.km
+        return self.km < other.km
 
-    def __gt__(self, other: Any) -> bool:
+    def __gt__(self, other: "Distance | int | float") -> bool:
         if type(other) is int or type(other) is float:
             return self.km > other
-        else:
-            return self.km > other.km
+        return self.km > other.km
 
-    def __eq__(self, other: Any) -> bool:
+    def __eq__(self, other: "Distance | int | float") -> bool:
         if type(other) is int or type(other) is float:
             return self.km == other
-        else:
-            return self.km == other.km
+        return self.km == other.km
 
-    def __le__(self, other: Any) -> bool:
+    def __le__(self, other: "Distance | int | float") -> bool:
         if type(other) is int or type(other) is float:
             return self.km <= other
-        else:
-            return self.km <= other.km
+        return self.km <= other.km
 
-    def __ge__(self, other: Any) -> bool:
+    def __ge__(self, other: "Distance | int | float") -> bool:
         if type(other) is int or type(other) is float:
             return self.km >= other
-        else:
-            return self.km >= other.km
+        return self.km >= other.km
